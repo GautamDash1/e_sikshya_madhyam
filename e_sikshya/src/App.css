@@ -5,7 +5,7 @@
   color: white;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(79deg , #7439db ,#c66fbc 48%,#f7944d);
+  background-image: linear-gradient(79deg , #fcf ,#c66fbc 48%,#7439db);
 }
 .auth-form-container, .login-form , .register-form{
   display: flex;
