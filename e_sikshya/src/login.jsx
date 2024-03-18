@@ -1,6 +1,6 @@
 import React ,{useState} from "react";
 
-export const Login = () => {
+export const Login = (props) => {
     const [email,setEmail]=useState('');
     const [pass,setPass]=useState('');
 
@@ -9,15 +9,16 @@ export const Login = () => {
         console.log(email);
     }
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <label for="email">email</label>
-                <input value={"email"} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="Enter the email." id="email" name="email"/>
-                <label for="password">password</label>
-                <input value={"pass"} onChange={(e) => setPass(e.target.value)}type="password" placeholder="Enterpassword" id="password" name="password"/>
-                <button type = "submit">LogIn</button>
+        <div className ="auth-form-container">
+            <h2>Login</h2>
+            <form className="login-form" onSubmit={handleSubmit}>
+                <label htmlFor="email">E-mail</label>
+                <input value={ email } onChange={(e) => setEmail(e.target.value)}type="email" placeholder="Enter the email." id="email" name="email"/>
+                <label htmlFor="password">Password</label>
+                <input value={ pass } onChange={(e) => setPass(e.target.value)}type="password" placeholder="Enter password" id="password" name="password"/>
+                <button type = "submit">Log In</button>
             </form>
-            <button>Don't have an account? Register here</button>
-        </>
+            <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here</button>
+        </div>
     )
 }
