@@ -1,8 +1,15 @@
 import React from 'react'
 import { FaLock } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
-
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+
+  const navigate = useNavigate();
+  
+    const handleSignup = () => {
+      navigate('/signup');
+    };
+
   return (
     <div className='h-[100vh] flex flex-col items-center justify-center primry-color'>
       <div className='h-[300px] w-80 px-6 my-4 bg-slate-800'>
@@ -18,7 +25,7 @@ const Login = () => {
               <FaLock className='absolute top-[35%] right-3'/>
             </div>
             <button className='items-center justify-center px-8 py-2 my-2 font-bold text-white transition-all duration-200 bg-primary-color font-pj rounded-full focus:outline-none focus: ring-2 focus:ring-offset-2 focus:ring-gray'>Login</button>
-            <span>Don't have an account ? <span>Register</span></span>
+            <span>Don't have an account ? <button onClick={handleSignup}>Register</button></span>
           </form>
         </div>
       </div>
