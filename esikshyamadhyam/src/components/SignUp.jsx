@@ -2,23 +2,36 @@ import React , { useState }  from 'react'
 import { FaLock, FaUser } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import authService from './authService';
 const SignUp = () => {
   const [user, setUser] = useState({})
+  const [message, setMessage] = useState('');
 
 const handleChange = (e) => {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value })
 }
 
+const handleRegister = () => {
+  authService.noauth(user)
+    .then(response => {
+      setMessage('Registration successful!');
+    })
+    .catch(error => {
+      setMessage('Registration failed.');
+      console.error(error);
+    });
+};
+
 const RegisterUser = (e) => {
     e.preventDefault();
     console.log(user);
 }
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
-    const handleLogin = () => {
+const handleLogin = () => {
       navigate('/login');
-    };
+ };
 
   return (
     <div className='h-[100vh] flex flex-col items-center justify-center primry-color'>
@@ -42,8 +55,9 @@ const RegisterUser = (e) => {
               <input className='border border-gray-200 w-full rounded-full py-2 my-2 px-4 bg-transparent' name='cpassword' placeholder='Confirm Password' type="password" value={user.cpassword || ""} onChange={handleChange}/>
               <FaLock className='absolute top-[35%] right-3'/>
             </div>
-            <button className='items-center justify-center px-8 py-2 my-2 font-bold text-white transition-all duration-200 bg-primary-color font-pj rounded-full focus:outline-none focus: ring-2 focus:ring-offset-2 focus:ring-gray'>Register</button>
-            <span>Already have an account ? <button onClick={handleLogin}>Login</button></span>
+            <button className='items-center justify-center px-8 py-2 my-2 font-bold text-white transition-all duration-200 bg-primary-color font-pj rounded-full focus:outline-none focus: ring-2 focus:ring-offset-2 focus:ring-gray' onClick={handleRegister}>Register</button>
+            <span>Already have an account ? <button onClick={handleLogin } >Login</button></span>
+            <p>{message}</p>
           </form>
         </div>
       </div>
