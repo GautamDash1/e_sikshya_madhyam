@@ -9,7 +9,7 @@ const handleChange = (e) => {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value })
 }
-const BASE_URL = "http://localhost:1200/esikshya/api/v1/accounts";
+const BASE_URL = "http://localhost:1200/esikshya/api/v1/accounts/register";
 
 const handleRegister = () => {
   fetch(BASE_URL , {
