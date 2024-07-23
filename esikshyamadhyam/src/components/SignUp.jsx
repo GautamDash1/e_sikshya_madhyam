@@ -2,7 +2,6 @@ import React , { useState }  from 'react'
 import { FaLock, FaUser } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 const SignUp = () => {
   const [user, setUser] = useState({})
   const [message, setMessage] = useState('');
@@ -13,20 +12,19 @@ const handleChange = (e) => {
 }
 const BASE_URL = "http://localhost:1200/esikshya/api/v1/accounts";
 
-const noauth = (user) => {
-  return axios.post(`${BASE_URL}/register`, user);
+const handleRegister = () => {
+  fetch(BASE_URL , {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  })
+  .then(response => response.json())
+  .then(data => console.log('User created:', data))
+  .catch(error => console.error('Error creating user:', error));
 };
 
-const handleRegister = () => {
-    noauth(user)
-    .then(response => {
-      setMessage('Registration successful!');
-    })
-    .catch(error => {
-      setMessage('Registration failed.');
-      console.error(error);
-    });
-};
 
 const RegisterUser = (e) => {
     e.preventDefault();
