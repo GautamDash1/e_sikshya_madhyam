@@ -2,7 +2,7 @@ import React , { useState }  from 'react'
 import { FaLock, FaUser } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
-import authService from './authService';
+import axios from 'axios';
 const SignUp = () => {
   const [user, setUser] = useState({})
   const [message, setMessage] = useState('');
@@ -11,9 +11,14 @@ const handleChange = (e) => {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value })
 }
+const BASE_URL = "http://localhost:1200/esikshya/api/v1/accounts";
+
+const noauth = (user) => {
+  return axios.post(`${BASE_URL}/register`, user);
+};
 
 const handleRegister = () => {
-  authService.noauth(user)
+    noauth(user)
     .then(response => {
       setMessage('Registration successful!');
     })
