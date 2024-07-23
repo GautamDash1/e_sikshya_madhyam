@@ -4,7 +4,6 @@ import { MdMail } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
   const [user, setUser] = useState({})
-  const [message, setMessage] = useState('');
 
 const handleChange = (e) => {
     const value = e.target.value;
@@ -60,7 +59,6 @@ const handleLogin = () => {
             </div>
             <button className='items-center justify-center px-8 py-2 my-2 font-bold text-white transition-all duration-200 bg-primary-color font-pj rounded-full focus:outline-none focus: ring-2 focus:ring-offset-2 focus:ring-gray' onClick={handleRegister}>Register</button>
             <span>Already have an account ? <button onClick={handleLogin } >Login</button></span>
-            <p>{message}</p>
           </form>
         </div>
       </div>
